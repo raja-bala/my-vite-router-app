@@ -11,3 +11,9 @@ npm create vite@latest ./
 ```shell
 npm install react-router
 ```
+
+3. Install the React Router Vite plugin
+
+```shell
+npm install -D @react-router/dev
+```
