@@ -39,3 +39,17 @@ export default defineConfig({
   ],
 });
 ```
+
+6. Add the React Router config
+
+- create a `react-router.config.ts` file in the root directory
+- add the following code to it
+
+```ts
+import type { Config } from "@react-router/dev/config";
+
+export default {
+  appDirectory: "src",
+  ssr: false,
+} satisfies Config;
+```
