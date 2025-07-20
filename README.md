@@ -17,3 +17,9 @@ npm install react-router
 ```shell
 npm install -D @react-router/dev
 ```
+
+4. Install a runtime adapter - As we are using Node as your runtime.
+
+```shell
+npm install @react-router/node
+```
