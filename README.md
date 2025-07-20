@@ -23,3 +23,19 @@ npm install -D @react-router/dev
 ```shell
 npm install @react-router/node
 ```
+
+5. Change the React plugin to React Router in Vite.config.js
+
+```ts
+-import react from '@vitejs/plugin-react'
++import { reactRouter } from "@react-router/dev/vite";
+import { defineConfig } from "vite";
+
+
+export default defineConfig({
+  plugins: [
+-    react()
++    reactRouter()
+  ],
+});
+```
