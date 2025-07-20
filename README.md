@@ -53,3 +53,60 @@ export default {
   ssr: false,
 } satisfies Config;
 ```
+
+7. Add the Root entry point
+
+- In a typical Vite app, the `index.html` file is the entry point for bundling. The React Router Vite plugin moves the entry point to a root.tsx file so you can use React to render the shell of your app instead of static HTML, and eventually upgrade to Server Rendering if you want.
+
+- Move your existing `index.html` to `src/root.tsx`
+
+- For example, if your current index.html looks like this:
+
+### index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+- Delete the `index.html` and create a new `src/root.tsx` file
+
+###src/root.tsx
+
+```tsx
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My App</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export default function Root() {
+  return <Outlet />;
+}
+```
