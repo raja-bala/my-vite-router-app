@@ -196,11 +196,21 @@ and in the `src/App.tsx` file, add the div with id `root` by replacing the exist
 
 ### src/App.tsx
 
-````tsx
+```tsx
 - <>
 + <div id="root">
 - </>
 - </div>
-```tsx
+```
 
-````
+11. Add `.react-router/` to your .gitignore to file to avoid tracking unnecessary files in your repository.
+
+```.gitignore
+.react-router/
+```
+
+#### Now make sure you can boot your app at this point before moving on:
+
+```shell
+npm run dev
+```
