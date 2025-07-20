@@ -151,3 +151,15 @@ ReactDOM.hydrateRoot(
 - Use `hydrateRoot` instead of `createRoot`
 - Render a `<HydratedRouter>` instead of your `<App/>` component
 - Note: we stopped rendering the `<App/>` component. We'll bring it back in a later step, but first we want to get the app to boot with the new entry point.
+
+9. Usage of `root.tsx` and `entry.client.tsx`
+
+- Between root.tsx and entry.client.tsx, you may want to shuffle some stuff around between them.
+
+In general:
+
+- 1. Use `root.tsx contains any rendering things like context providers, layouts, styles, etc.
+- 2. entry.client.tsx should be as minimal as possible
+- 3. Remember to not try to render your existing <App/> component yet, we'll do that in a later step
+
+- Note that your root.tsx file will be statically generated and served as the entry point of your app, so just that module will need to be compatible with server rendering. This is where most of your trouble will come.
