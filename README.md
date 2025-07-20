@@ -98,7 +98,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <{children}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -163,3 +163,44 @@ In general:
 - 3. Remember to not try to render your existing <App/> component yet, we'll do that in a later step
 
 - Note that your root.tsx file will be statically generated and served as the entry point of your app, so just that module will need to be compatible with server rendering. This is where most of your trouble will come.
+
+10. Setting up our Routes
+
+- The React Router Vite plugin uses a `routes.ts` file to configure your routes. For now we'll add a simple catchall route to get things going.
+- create a `src/routes.ts` file and `src/catchall.tsx` file
+
+### src/routes.ts
+
+```ts
+import { type RouteConfig, route } from "@react-router/dev/routes";
+
+export default [
+  // * matches all URLs, the ? makes it optional so it will match / as well
+  route("*?", "catchall.tsx"),
+] satisfies RouteConfig;
+```
+
+### src/catchall.tsx
+
+Replace this with our original `App` component, but for now we'll just render something simple to make sure we can boot the app.
+
+```tsx
+import App from "./App";
+
+export default function Component() {
+  return <App />;
+}
+```
+
+and in the `src/App.tsx` file, add the div with id `root` by replacing the existing fragment root, so the existing design wont be broken.
+
+### src/App.tsx
+
+````tsx
+- <>
++ <div id="root">
+- </>
+- </div>
+```tsx
+
+````
