@@ -214,3 +214,7 @@ and in the `src/App.tsx` file, add the div with id `root` by replacing the exist
 ```shell
 npm run dev
 ```
+
+## More on Routes and Routing
+
+For Reference: https://reactrouter.com/start/framework/routing
