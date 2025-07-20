@@ -110,3 +110,44 @@ export default function Root() {
   return <Outlet />;
 }
 ```
+
+8. Add client entry module
+
+- In the typical Vite app the `index.html` file points to `src/main.tsx` as the client entry point. React Router uses a file named `src/entry.client.tsx` as the client entry point` instead.
+
+- If your current `src/main.tsx` looks like this:
+
+### src/main.tsx
+
+```tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+- Rename the `src/main.tsx` file to `src/entry.client.tsx` file. And update its contents to this:
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { HydratedRouter } from "react-router/dom";
+import "./index.css";
+
+ReactDOM.hydrateRoot(
+  document,
+  <React.StrictMode>
+    <HydratedRouter />
+  </React.StrictMode>
+);
+```
+
+- Use `hydrateRoot` instead of `createRoot`
+- Render a `<HydratedRouter>` instead of your `<App/>` component
+- Note: we stopped rendering the `<App/>` component. We'll bring it back in a later step, but first we want to get the app to boot with the new entry point.
